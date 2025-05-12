@@ -1,0 +1,90 @@
+🧠 Problem Statement:
+Given an array arr, find the minimum and maximum elements in the array.
+
+✅ Constraints:
+1 <= arr.length <= 10^5
+
+1 <= arr[i] <= 10^9
+
+🎯 Goal:
+Return a Pair<min, max> of the smallest and largest element in the array.
+
+🔍 Approach:
+🔸 Step-by-Step Thinking:
+Array may contain one or more elements.
+
+We need to compare every element to determine min and max.
+
+Since we must visit each element once, best time complexity is O(n).
+
+We initialize min and max with the first element of the array.
+
+Traverse the array from index 1:
+
+If current element < min, update min.
+
+If current element > max, update max.
+
+📄 Dry Run:
+java
+Copy
+Edit
+Input: [3, 2, 1, 56, 10000, 167]
+
+Start: min = 3, max = 3
+
+i = 1 → arr[i] = 2 → min = 2  
+i = 2 → arr[i] = 1 → min = 1  
+i = 3 → arr[i] = 56 → max = 56  
+i = 4 → arr[i] = 10000 → max = 10000  
+i = 5 → arr[i] = 167 → no change
+
+Result → min = 1, max = 10000
+✅ Final Code (GFG Friendly):
+🔹 Main Logic in Solution Class:
+java
+Copy
+Edit
+class Solution {
+    public Pair<Integer, Integer> getMinMax(int[] arr) {
+        int minimum = arr[0];
+        int maximum = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < minimum) {
+                minimum = arr[i];
+            }
+            if (arr[i] > maximum) {
+                maximum = arr[i];
+            }
+        }
+
+        return new Pair<>(minimum, maximum);
+    }
+}
+🛠️ Custom Pair Class (If needed):
+Use this if you're testing outside of platforms like GFG that already define Pair.
+
+java
+Copy
+Edit
+class Pair<U, V> {
+    public final U first;
+    public final V second;
+
+    public Pair(U first, V second) {
+        this.first = first;
+        this.second = second;
+    }
+}
+🕐 Time Complexity:
+O(n) – One pass through the array.
+
+📦 Space Complexity:
+O(1) – No extra space used (except return value).
+
+🧪 Test Cases:
+Input	Output
+[3, 2, 1, 56, 10000, 167]	1 10000
+[1, 345, 234, 21, 56789]	1 56789
+[56789]	56789 56789
